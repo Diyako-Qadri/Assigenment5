@@ -13,6 +13,7 @@
 
   --spacing-small: 8px;
   --spacing-main: 16px;
+  --spacing-large: 24px;
 }
 
 * {
@@ -67,12 +68,24 @@ h1 {
 nav {
   top: 0;
   position: sticky;
+  padding: 24px;
+
 }
 
 nav ul {
   display: none;
   list-style-type: none;
+  position: fixed;
+  right:0;
+  top: 60px;
   cursor: pointer;
+}
+
+nav .hamburger-menu {
+  position: absolute;
+  top:0;
+  right: 0;
+  margin-bottom: 100px;
 }
 
 main {
