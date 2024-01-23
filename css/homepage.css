@@ -73,12 +73,14 @@ nav {
 }
 
 nav ul {
+  background-color: #fff;
   display: none;
   list-style-type: none;
   position: fixed;
   right:0;
   top: 60px;
   cursor: pointer;
+  z-index: 30;
 }
 
 nav .hamburger-menu {
