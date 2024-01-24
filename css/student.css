@@ -64,6 +64,7 @@ button a {
   color: var(--primary-text-color);
   padding: 1.2rem;
 }
+/*----footer----*/
 
 footer {
   background: var(--primary-gradient-background);
@@ -79,6 +80,31 @@ footer a {
   text-decoration: none;
 }
 
+.footer-content h3{
+  font-size: 24px;
+  font-weight: 400;
+  text-transform: capitalize;
+  line-height: 48px;
+}
+
+.footer-content p {
+  margin: 10px auto;
+  line-height: 28px;
+  font-size: 14px;
+}
+
+.footer-bottom {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-bottom p {
+  font-size: 14px;
+  word-spacing: 2px;
+  text-align: center;
+  margin: 10px auto;
+
+}
 .locationbtn,
 .rolebtn {
   background-color: #3498db;
