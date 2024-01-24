@@ -85,6 +85,7 @@ button a {
   color: var(--primary-text-color);
   padding: 1.2rem;
 }
+/*----- Footer -----*/
 
 footer {
   background: var(--primary-gradient-background);
@@ -94,6 +95,19 @@ footer {
   text-align: center;
   padding: 24px;
   max-height: 15%;
+}
+
+.footer-content h3{
+  font-size: 24px;
+  font-weight: 400;
+  text-transform: capitalize;
+  line-height: 48px;
+}
+
+.footer-content p {
+  margin: 10px auto;
+  line-height: 28px;
+  font-size: 14px;
 }
 
 footer a {
