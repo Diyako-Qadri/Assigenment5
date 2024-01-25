@@ -248,6 +248,21 @@ $(() => {
     
     showCompanyInfo(filteredCompanies);
   })
+/*
+  const filteringFunction = (filterCategory, classReference) => {//role, .role-FED
+    $(classReference).on("click", () => {
+
+      let attribute= $(classReference).attr("data-value");
+      console.log(attribute);
+  
+      const filteredCompanies = ourCompanies.filter((item)=> {
+        return item.filterCategory===attribute;
+      })
+      
+      showCompanyInfo(filteredCompanies);
+    })
+  }
+  filteringFunction(role, ".role-FED");*/
 
 
 
