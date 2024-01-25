@@ -212,6 +212,51 @@ $(() => {
     
     showCompanyInfo(filteredCompanies);
   })
+  $(".role-BED").on("click", () => {
+
+    let attribute= $(".role-BED").attr("data-value");
+    console.log(attribute);
+
+    const filteredCompanies = ourCompanies.filter((item)=> {
+      return item.role===attribute;
+    })
+    //showCompanyInfo(ourCompanies);
+    
+    showCompanyInfo(filteredCompanies);
+  })
+  $(".role-FED").on("click", () => {
+
+    let attribute= $(".role-FED").attr("data-value");
+    console.log(attribute);
+
+    const filteredCompanies = ourCompanies.filter((item)=> {
+      return item.role===attribute;
+    })
+    //showCompanyInfo(ourCompanies);
+    
+    showCompanyInfo(filteredCompanies);
+  })
+  $(".role-AD").on("click", () => {
+
+    let attribute= $(".role-AD").attr("data-value");
+    console.log(attribute);
+
+    const filteredCompanies = ourCompanies.filter((item)=> {
+      return item.role===attribute;
+    })
+    //showCompanyInfo(ourCompanies);
+    
+    showCompanyInfo(filteredCompanies);
+  })
+
+
+
+
+
+
+
+
+
   $(".location-Stockholm").on("click", () => {
 
     let attribute= $(".location-Stockholm").attr("data-value");
