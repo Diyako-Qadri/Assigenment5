@@ -143,14 +143,15 @@ $(() => {
   let ourCompanies = [Company1, Company2, Company3, Company4, Company5, Company6, Company7, Company8, Company9, Company10];
 
   const showCompanyInfo = (companies) => {
-    $(".main-content").empty();
+    $(".main-content").empty();//-need to move and put as separate function????/Davide
     companies.forEach((company) => {
       $(".main-content").append(`
       <div class="company-container">
         <img class="company-img" src="${company.smallimg}" alt="${company.name}">
         <div class="company-text">  
         <h2 class="company-title"> ${company.name} </h2> 
-        <p class="company-role"> We are looking for a ${company.role} </p> 
+        <p class="company-role"> We are looking for a ${company.role} </p>
+        <p class="company-location"> Location: ${company.location}</p> 
         <p class="company-fulltime"> Full-time: ${company.fulltime} </p> 
         <p class="company-description"> ${company.description} </p> 
         </div> 
@@ -186,7 +187,7 @@ $(() => {
 
   
   //development filters functions
-
+  
   $(".fulltime-true").on("click", () => {
 
     let attribute= $(".fulltime-true").attr("data-value");
