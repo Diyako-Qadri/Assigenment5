@@ -76,6 +76,30 @@ button a {
   padding: 1.2rem;
 }
 
+/*----- Our Team ---*/
+
+main {
+  padding: 15px 20px 25px;
+
+}
+.about-us h1 {
+  color: #fff;
+  font-weight: bold;
+
+}
+
+.our-team h2{
+  padding: 15px 0px 25px;
+  color: white;
+  
+}
+
+.our-team p {
+  padding: 15px 0 25px;
+  color: white;
+
+}
+
 /* ---- Footer ----*/
 
 footer {
