@@ -141,7 +141,9 @@ $(() => {
   );
 
   let ourCompanies = [Company1, Company2, Company3, Company4, Company5, Company6, Company7, Company8, Company9, Company10];//inserire in reset per ripristinare????
-
+  let filterPlaceholder1= [];
+  let filterPlaceholder2= [];
+  let multifilterActive= false;
   const showCompanyInfo = (companies) => {
     const companyContent = $('.main-content').empty();
     companies.forEach((company) => {
@@ -199,10 +201,20 @@ $(() => {
 const filterMainFunction = (className, filterCategory, filterSpecificValue) => {//ex .profile , fulltime, true
   $(className).on("click", () => {
     $(".main-content").empty();
-    let filteredAnnouncements = ourCompanies.filter((company)=> {
-      return company[filterCategory]=== filterSpecificValue;
-    })
-  showCompanyInfo(filteredAnnouncements);
+    //first time filter
+    if (multifilterActive===false) {
+      let filteredAnnouncements = ourCompanies.filter((company)=> {
+
+        if (company[filterCategory]=== filterSpecificValue) {
+          filterPlaceholder1.push(company);
+          console.log(filterPlaceholder1);
+          return company[filterCategory]=== filterSpecificValue
+        }
+        
+      })
+    showCompanyInfo(filteredAnnouncements);
+    }
+    
   })
 }
 
@@ -210,6 +222,7 @@ const filterMainFunction = (className, filterCategory, filterSpecificValue) => {
 const resetFilters = () => {
   $(".resetbtn").on("click", () => {
     $(".main-content").empty();
+    multifilterActive= false;
     showCompanyInfo(ourCompanies);
   });
 };
