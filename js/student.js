@@ -195,7 +195,7 @@ $(() => {
 
   showCompanyInfo(ourCompanies);
 
-
+//Main filter function
 const filterMainFunction = (className, filterCategory, filterSpecificValue) => {//ex .profile , fulltime, true
   $(className).on("click", () => {
     $(".main-content").empty();
@@ -206,19 +206,17 @@ const filterMainFunction = (className, filterCategory, filterSpecificValue) => {
   })
 }
 
-  
-  
-  // RESET FILTERS
-  const resetFilters = () => {
-    $(".resetbtn").on("click", () => {
-      $(".main-content").empty();
-      showCompanyInfo(ourCompanies);
-    });
-  };
+//Reset filters
+const resetFilters = () => {
+  $(".resetbtn").on("click", () => {
+    $(".main-content").empty();
+    showCompanyInfo(ourCompanies);
+  });
+};
   
   resetFilters();
 
-  // B U T T O N S
+  // Buttons
   const setupDropdown = (buttonId, divId) => {
     $(document).ready(function () {
       $(buttonId).on("click", function () {
@@ -234,6 +232,7 @@ const filterMainFunction = (className, filterCategory, filterSpecificValue) => {
     });
   };
 
+  //Dropdowns
   setupDropdown("#locationDropdownBtn", "#location");
   setupDropdown("#roleDropdownBtn", "#role");
   setupDropdown("#fulltimeDropdownBtn", "#fulltime");
