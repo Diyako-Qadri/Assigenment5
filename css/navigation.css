@@ -48,6 +48,7 @@ nav ul {
   padding: var(--spacing-small);
   display: none;
   z-index: 12;
+  min-width: 120px;
 }
 
 .submenu-3 {
@@ -111,6 +112,11 @@ nav ul > li.with-arrow::before {
 /* Remove arrow for items without children */
 nav ul > li:not(.with-arrow) {
   position: relative;
+  min-width: 110px;
+}
+
+li:not(.with-arrow):hover {
+  background-color: var(--overlay-color);
 }
 
 /* Remove arrow for last children */
