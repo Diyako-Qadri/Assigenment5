@@ -245,20 +245,70 @@ $(() => {
     });
   });
 
-  const filterMainFunction = (
-    className,
-    filterCategory,
-    filterSpecificValue
-  ) => {
-    //ex .profile , fulltime, true
-    $(className).on('click', () => {
-      $('.main-content').empty();
-      let filteredAnnouncements = arrayStudentObject.filter(students => {
-        return students[filterCategory] === filterSpecificValue;
-      });
-      showStudentInfo(filteredAnnouncements);
-    });
-  };
+  let filterPlaceholder1= [];
+  let filterPlaceholder2= [];
+  let filterPlaceholder3= [];
+  let multifilterActive= false;
+  let filterCounter=0;
+
+  
+  
+const filterMainFunction = (className, filterCategory, filterSpecificValue) => {//ex .profile , fulltime, true
+  $(className).on("click", () => {
+    $(".main-content").empty();
+    //first time filter
+    if (multifilterActive===false) {
+      let filteredAnnouncements = arrayStudentObject.filter((student)=> {
+
+        if (student[filterCategory]=== filterSpecificValue) {
+          filterPlaceholder1.push(student);
+          console.log(filterPlaceholder1);
+          return student[filterCategory]=== filterSpecificValue
+        }
+        multifilterActive=true;
+        
+        
+      })
+      filterCounter++;
+      console.log(filterCounter)
+    showStudentInfo(filteredAnnouncements);
+    // filter after 2nd click
+    } else if (multifilterActive===true && filterCounter===1) {
+
+      let filteredAnnouncements1 = filterPlaceholder1.filter((student)=> {
+
+        if (student[filterCategory]=== filterSpecificValue) {
+          filterPlaceholder2.push(student);
+          console.log(filterPlaceholder2);
+          return student[filterCategory]=== filterSpecificValue
+        }
+        multifilterActive=true;
+        
+      })
+      filterCounter++;
+        console.log(filterCounter)
+      showStudentInfo(filteredAnnouncements1);
+      //filter 3rd click
+    }  else if (multifilterActive===true && filterCounter===2) {
+
+      let filteredAnnouncements2 = filterPlaceholder1.filter((student)=> {
+
+        if (student[filterCategory]=== filterSpecificValue) {
+          filterPlaceholder3.push(student);
+          console.log(filterPlaceholder3);
+          return student[filterCategory]=== filterSpecificValue
+        }
+        multifilterActive=true;
+        
+      })
+      filterCounter++;
+        console.log(filterCounter)
+      showStudentInfo(filteredAnnouncements2);
+    }
+    
+  })
+}
+
 
   const dropdownsOriginal = $('.dropdown');
 
