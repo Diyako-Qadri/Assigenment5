@@ -143,6 +143,7 @@ $(() => {
   let ourCompanies = [Company1, Company2, Company3, Company4, Company5, Company6, Company7, Company8, Company9, Company10];//inserire in reset per ripristinare????
   let filterPlaceholder1= [];
   let filterPlaceholder2= [];
+  let filterPlaceholder3= [];
   let multifilterActive= false;
   let filterCounter=0;
   const showCompanyInfo = (companies) => {
@@ -234,6 +235,22 @@ const filterMainFunction = (className, filterCategory, filterSpecificValue) => {
       filterCounter++;
         console.log(filterCounter)
       showCompanyInfo(filteredAnnouncements1);
+
+    }  else if (multifilterActive===true && filterCounter===2) {
+
+      let filteredAnnouncements2 = filterPlaceholder1.filter((company)=> {
+
+        if (company[filterCategory]=== filterSpecificValue) {
+          filterPlaceholder3.push(company);
+          console.log(filterPlaceholder3);
+          return company[filterCategory]=== filterSpecificValue
+        }
+        multifilterActive=true;
+        
+      })
+      filterCounter++;
+        console.log(filterCounter)
+      showCompanyInfo(filteredAnnouncements2);
     }
     
   })
