@@ -1,42 +1,48 @@
 $(() => {
-  // GENERAL TO ALL PAGES
-  //Hamburger menu 1st level/wokrks
+  $(document).ready(function () {
+    const navMenu = () => {
+      let isMenuOpen = false;
 
-  const navMenu = () => {
-    $('nav .hamburger-menu').on('click', event =>
-      $(event.target).next('ul').toggle()
-    );
-    $('ul li').on({
-      mouseenter: event => $(event.target).toggleClass('active'),
-      mouseleave: event => $(event.target).toggleClass('active'),
-      click: event => {
-        $(event.target).find('.submenu').toggle('active');
-        $(event.target).siblings().find('.submenu').hide('active');
-      },
-    });
-    //hamburger 2nd level-works
-    $('.submenu li').on('click', event => $(event.target).next('ul').toggle());
-    $('.submenu li').on({
-      click: event => {
-        $(event.target).find('.submenu-2').toggle('active');
-        $(event.target).siblings().find('.submenu-2').hide('active');
-      },
-    });
-    //hamburger menu 3 level-works
-    $('.submenu-2 li').on('click', event =>
-      $(event.target).next('ul').toggle()
-    );
-    $('.submenu-2 li').on({
-      click: event => {
-        $(event.target).find('.submenu-3').toggle('active');
-        $(event.target).siblings().find('.submenu-3').hide('active');
-      },
-    });
+      const toggleMenu = () => {
+        $(".nav-container").toggleClass("added-padding");
+        $("ul.main-menu").slideToggle();
+        isMenuOpen = !isMenuOpen;
+      };
 
-    $('nav .hamburger-menu').on('click', () => {
-      $('.nav-container').toggleClass('added-padding');
-    });
-  };
+      $("nav .hamburger-menu").on("click", (event) => {
+        toggleMenu();
+        event.stopPropagation();
+      });
 
-  navMenu();
+      $("ul.main-menu > li").on("click", function (event) {
+        // Toggle the submenu
+        $(this).find(".submenu").toggleClass("active").slideToggle();
+        $("ul.main-menu > li").not(this).find(".submenu").removeClass("active").slideUp();
+        event.stopPropagation();
+      });
+
+      $(".submenu > li").on("click", function (event) {
+        // Toggle the submenu-2
+        $(this).find(".submenu-2").toggleClass("active").slideToggle();
+        $(".submenu > li").not(this).find(".submenu-2").removeClass("active");
+        event.stopPropagation();
+      });
+
+      $(".submenu-2 > li").on("click", function (event) {
+        // Toggle the submenu-3
+        $(this).find(".submenu-3").toggleClass("active").slideToggle();
+        $(".submenu-2 > li").not(this).find(".submenu-3").removeClass("active");
+        event.stopPropagation();
+      });
+
+      // Handle click on body to close the menu
+      $(document).on("click", (event) => {
+        if (isMenuOpen && !$(event.target).closest(".nav-container").length) {
+          toggleMenu();
+        }
+      });
+    };
+
+    navMenu();
+  });
 });

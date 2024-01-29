@@ -1,5 +1,7 @@
 $(() => {
-  // SLIDESHOW SETUP{
+  var isHamburgerMenuActive = false;
+
+  // SLIDESHOW SETUP
   $(".slideshow")
     .imagesLoaded({ background: true })
     .done(function () {
@@ -23,7 +25,7 @@ $(() => {
         );
       });
 
-      // prepare navigation and set navigation items on the right place
+      // prepare navigation and set navigation items in the right place
       navigationItem.each(function (index, elem) {
         TweenMax.set(elem, {
           left: navigation.width() / 2 - navigationItem.width() / 2 - 10,
@@ -62,73 +64,94 @@ $(() => {
           }
         });
 
-        timeline
-          .to(navigation, 0.6, {
-            rotation: -rotation + type,
-            transformOrigin: "50% 50%",
-            ease: Sine.easeInOut,
-          })
-          .staggerTo(
-            navigationItem.find(".background-holder"),
-            0.6,
-            {
-              cycle: {
-                //function that returns a value
-                rotation: function (index, element) {
-                  return -90 - Number($(element).prev(".rotate-holder").text()) + rotation + type;
-                },
-              },
+        // Execute the GSAP animation only if the hamburger menu is not active
+        if (!isHamburgerMenuActive) {
+          timeline
+            .to(navigation, 0.6, {
+              rotation: -rotation + type,
               transformOrigin: "50% 50%",
               ease: Sine.easeInOut,
-            },
-            0,
-            "-=0.6"
-          )
-          .staggerFromTo(
-            $(".active").find(".letter"),
-            0.3,
-            {
-              autoAlpha: 0,
-              x: -100,
-            },
-            {
-              autoAlpha: 1,
-              x: 0,
-              ease: Sine.easeInOut,
-            },
-            0.025,
-            "-=0.3"
-          )
-          .fromTo(
-            $(".active").find(".background"),
-            0.9,
-            {
-              autoAlpha: 0,
-              x: -100,
-            },
-            {
-              autoAlpha: 1,
-              x: 0,
-              ease: Sine.easeInOut,
-            },
-            0.05,
-            "+=0.3"
-          );
+            })
+            .staggerTo(
+              navigationItem.find(".background-holder"),
+              0.6,
+              {
+                cycle: {
+                  rotation: function (index, element) {
+                    return -90 - Number($(element).prev(".rotate-holder").text()) + rotation + type;
+                  },
+                },
+                transformOrigin: "50% 50%",
+                ease: Sine.easeInOut,
+              },
+              0,
+              "-=0.6"
+            )
+            .staggerFromTo(
+              $(".active").find(".letter"),
+              0.3,
+              {
+                autoAlpha: 0,
+                x: -100,
+              },
+              {
+                autoAlpha: 1,
+                x: 0,
+                ease: Sine.easeInOut,
+              },
+              0.025,
+              "-=0.3"
+            )
+            .fromTo(
+              $(".active").find(".background"),
+              0.9,
+              {
+                autoAlpha: 0,
+                x: -100,
+              },
+              {
+                autoAlpha: 1,
+                x: 0,
+                ease: Sine.easeInOut,
+              },
+              0.05,
+              "+=0.3"
+            );
+        }
       }
 
-      // click/hover on items
-      navigationItem.on("click", function () {
-        setTweenValues.call(this); // Set tween values on click
-        doTween($(this));
+      // Hamburger menu click event
+      $("nav .hamburger-menu").on("click", function () {
+        // Toggle the flag
+        isHamburgerMenuActive = !isHamburgerMenuActive;
+
+        // Handle other actions related to the hamburger menu here if needed
+
+        // Add or remove a class to indicate the active state (you can use this class in your CSS)
+        $("nav").toggleClass("hamburger-menu-active", isHamburgerMenuActive);
+
+        // Add or remove a class to the ul element to indicate the active state
+        $("ul.main-menu").toggleClass("menu-active", isHamburgerMenuActive);
       });
 
-      // on load show slideshow as well as first "active" navigation/detail item
+      // Slideshow navigation click event
+      navigationItem.on("click", function (event) {
+        // If the menu is active, prevent the default behavior
+        if (isHamburgerMenuActive || $(event.target).closest(".menu-active").length > 0) {
+          event.preventDefault();
+        } else {
+          setTweenValues.call(this);
+          doTween($(this));
+        }
+      });
+
+      // on load show slideshow as well as the first "active" navigation/detail item
       TweenMax.to(slideshow, 1, { autoAlpha: 1 });
       TweenMax.to($(".active").find(".letter"), 0.7, { autoAlpha: 1, x: 0 });
       TweenMax.to($(".active").find(".background"), 0.7, { autoAlpha: 1, x: 0 });
     });
 
-  // fast fix for resize window and refresh view, attention: not use in production, only for demo purposes!
+  // fast fix for resizing window and refreshing view, attention: not for use in production, only for demo purposes!
   (function () {
     var width = window.innerWidth;
 
