@@ -201,13 +201,29 @@ $(() => {
 const filterMainFunction = (className, filterCategory, filterSpecificValue) => {//ex .profile , fulltime, true
   $(className).on("click", () => {
     $(".main-content").empty();
-    let filteredAnnouncements = ourCompanies.filter((company)=> {
-      if (company[filterCategory]=== filterSpecificValue && multifilterActive===false) {
-        
-        companyFiltered.push(company);
-      };
-    })
-  showCompanyInfo(companyFiltered);
+    if (multifilterActive===false) {
+      ourCompanies.filter((company)=> {
+
+        if (company[filterCategory] === filterSpecificValue) {
+          companyFiltered.push(company);
+        };
+      })
+      multifilterActive=true;
+      showCompanyInfo(companyFiltered);
+    } else if (multifilterActive===true) {
+      companyFiltered.filter((company)=> {
+        companyFiltered=[];
+        if (company[filterCategory] === filterSpecificValue) {
+          
+          companyFiltered.push(company);
+        };
+      })
+      showCompanyInfo(companyFiltered);
+      
+    }
+    
+  
+  
   })
 }
 
