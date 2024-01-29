@@ -1,0 +1,25 @@
+:root {
+    --primary-text-color: #eee;
+    --background-color: linear-gradient(0deg, rgb(6, 5, 21) 50%, rgb(86, 0, 167) 120%);
+    --primary-text-color: #eee;
+    --background-color: linear-gradient(0deg,rgb(6, 5, 21) 50%,rgb(86, 0, 167) 120%);
+    --primary-profile-background-color: linear-gradient(0deg,rgb(186, 170, 207) 50%,rgb(114, 69, 124) 120%);
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html {
+    height: 100vh;
+  }
+  
+  body {
+    background: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    font-family: "K2D-Regular";
+    margin: 0;
+  }
