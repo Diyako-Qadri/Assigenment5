@@ -13,7 +13,7 @@ $(() => {
   }
   let Company1 = new Company(
     "InnovateTech Solutions",
-    "Front End Developer",
+    "Frontend Developer",
     "Stockholm",
     true,
     "InnovateTech Solutions is a dynamic tech company pushing the boundaries of innovation. Join our team to work on cutting-edge projects and make a lasting impact in the world of technology.",
@@ -105,7 +105,7 @@ $(() => {
     "AeroInnovate",
     "Frontend Developer",
     "Stockholm",
-    true,
+    false,
     "AeroInnovate is a pioneer in aerospace engineering, pushing the boundaries of flight and space exploration. Join our team to work on groundbreaking projects and shape the future of aerospace technology.",
     "As an Aerospace Engineer, you will design and test aircraft and spacecraft components, ensuring they meet safety and performance standards.",
     "Requirements:\n- Bachelor's or Master's degree in Aerospace Engineering\n- Experience with CAD software and simulation tools\n- Passion for aerospace innovation",
@@ -212,12 +212,14 @@ const filterMainFunction = (className, filterCategory, filterSpecificValue) => {
           return company[filterCategory]=== filterSpecificValue
         }
         multifilterActive=true;
-        filterCounter++;
-        console.log(filterCounter)
+        
+        
       })
+      filterCounter++;
+      console.log(filterCounter)
     showCompanyInfo(filteredAnnouncements);
     // filter after 2nd click
-    } else if (multifilterActive===true && filterCounter===2) {
+    } else if (multifilterActive===true && filterCounter===1) {
 
       let filteredAnnouncements1 = filterPlaceholder1.filter((company)=> {
 
@@ -227,9 +229,10 @@ const filterMainFunction = (className, filterCategory, filterSpecificValue) => {
           return company[filterCategory]=== filterSpecificValue
         }
         multifilterActive=true;
-        filterCounter++;
-        console.log(filterCounter)
+        
       })
+      filterCounter++;
+        console.log(filterCounter)
       showCompanyInfo(filteredAnnouncements1);
     }
     
