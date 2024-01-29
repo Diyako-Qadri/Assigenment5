@@ -144,6 +144,7 @@ $(() => {
   let filterPlaceholder1= [];
   let filterPlaceholder2= [];
   let multifilterActive= false;
+  let filterCounter=0;
   const showCompanyInfo = (companies) => {
     const companyContent = $('.main-content').empty();
     companies.forEach((company) => {
@@ -210,9 +211,26 @@ const filterMainFunction = (className, filterCategory, filterSpecificValue) => {
           console.log(filterPlaceholder1);
           return company[filterCategory]=== filterSpecificValue
         }
-        
+        multifilterActive=true;
+        filterCounter++;
+        console.log(filterCounter)
       })
     showCompanyInfo(filteredAnnouncements);
+    // filter after 2nd click
+    } else if (multifilterActive===true && filterCounter===2) {
+
+      let filteredAnnouncements1 = filterPlaceholder1.filter((company)=> {
+
+        if (company[filterCategory]=== filterSpecificValue) {
+          filterPlaceholder2.push(company);
+          console.log(filterPlaceholder2);
+          return company[filterCategory]=== filterSpecificValue
+        }
+        multifilterActive=true;
+        filterCounter++;
+        console.log(filterCounter)
+      })
+      showCompanyInfo(filteredAnnouncements1);
     }
     
   })
