@@ -196,12 +196,14 @@ $(() => {
   showCompanyInfo(ourCompanies);
 
   let companyFiltered = [];
+  let multifilterActive=false;
 
 const filterMainFunction = (className, filterCategory, filterSpecificValue) => {//ex .profile , fulltime, true
   $(className).on("click", () => {
     $(".main-content").empty();
     let filteredAnnouncements = ourCompanies.filter((company)=> {
-      if (company[filterCategory]=== filterSpecificValue) {
+      if (company[filterCategory]=== filterSpecificValue && multifilterActive===false) {
+        
         companyFiltered.push(company);
       };
     })
@@ -209,26 +211,12 @@ const filterMainFunction = (className, filterCategory, filterSpecificValue) => {
   })
 }
 
-  //fulltime
-  filterMainFunction(".fulltime-true", "fulltime", "Yes");
-  filterMainFunction(".fulltime-false", "fulltime", "No");
-  //Roles
-  filterMainFunction(".senior-software", "role", "Senior Software Developer");
-  filterMainFunction(".frontend-developer", "role", "Frontend Developer");
-  filterMainFunction(".ux-design", "role", "UX/UI Designer");
-  filterMainFunction(".data-scientist", "role", "Data Scientist");
-  //Location
-  filterMainFunction(".stockholm", "location", "Stockholm");
-  filterMainFunction(".rome", "location", "Rome");
-  filterMainFunction(".paris", "location", "Paris");
-  filterMainFunction(".los-angeles", "location", "Los Angeles");
-  filterMainFunction(".new-york", "location", "New York");
-  
   // RESET FILTERS
   const resetFilters = () => {
     $(".resetbtn").on("click", () => {
       ourCompanies = [Company1, Company2, Company3, Company4, Company5, Company6, Company7, Company8, Company9, Company10];
       companyFiltered = [];
+      multifilterActive=false;
       $(".main-content").empty();
       showCompanyInfo(ourCompanies);
     });
@@ -255,4 +243,19 @@ const filterMainFunction = (className, filterCategory, filterSpecificValue) => {
   setupDropdown("#locationDropdownBtn", "#location");
   setupDropdown("#roleDropdownBtn", "#role");
   setupDropdown("#fulltimeDropdownBtn", "#fulltime");
+
+  //fulltime
+  filterMainFunction(".fulltime-true", "fulltime", "Yes");
+  filterMainFunction(".fulltime-false", "fulltime", "No");
+  //Roles
+  filterMainFunction(".senior-software", "role", "Senior Software Developer");
+  filterMainFunction(".frontend-developer", "role", "Frontend Developer");
+  filterMainFunction(".ux-design", "role", "UX/UI Designer");
+  filterMainFunction(".data-scientist", "role", "Data Scientist");
+  //Location
+  filterMainFunction(".stockholm", "location", "Stockholm");
+  filterMainFunction(".rome", "location", "Rome");
+  filterMainFunction(".paris", "location", "Paris");
+  filterMainFunction(".los-angeles", "location", "Los Angeles");
+  filterMainFunction(".new-york", "location", "New York");
 });
