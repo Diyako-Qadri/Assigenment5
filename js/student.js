@@ -195,14 +195,17 @@ $(() => {
 
   showCompanyInfo(ourCompanies);
 
+  let companyFiltered = [];
 
 const filterMainFunction = (className, filterCategory, filterSpecificValue) => {//ex .profile , fulltime, true
   $(className).on("click", () => {
     $(".main-content").empty();
     let filteredAnnouncements = ourCompanies.filter((company)=> {
-      return company[filterCategory]=== filterSpecificValue;
+      if (company[filterCategory]=== filterSpecificValue) {
+        companyFiltered.push(company);
+      };
     })
-  showCompanyInfo(filteredAnnouncements);
+  showCompanyInfo(companyFiltered);
   })
 }
 
@@ -224,6 +227,8 @@ const filterMainFunction = (className, filterCategory, filterSpecificValue) => {
   // RESET FILTERS
   const resetFilters = () => {
     $(".resetbtn").on("click", () => {
+      ourCompanies = [Company1, Company2, Company3, Company4, Company5, Company6, Company7, Company8, Company9, Company10];
+      companyFiltered = [];
       $(".main-content").empty();
       showCompanyInfo(ourCompanies);
     });
