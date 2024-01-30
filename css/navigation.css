@@ -38,7 +38,15 @@ header {
   margin: 0;
   padding: 4px;
   position: relative;
-  z-index: 120;
+}
+
+.submenu > div.with-arrow,
+.submenu-2 > div.with-arrow,
+.submenu-3 > div.with-arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
 }
 
 .main-menu > div.with-arrow:hover {
@@ -48,14 +56,6 @@ header {
 .with-arrow.active .submenu-2,
 .with-arrow.active .submenu-2.active {
   display: flex;
-}
-
-.portal-submenu.active,
-.team-submenu.active,
-.location-submenu.active,
-.location-submenu .submenu-2.active,
-.location-submenu .submenu-3.active {
-  display: block !important;
 }
 
 div.submenu,
@@ -73,14 +73,6 @@ div.submenu-3 {
   transition: max-height 0.3s ease;
   padding: var(--spacing-small);
   background-color: rgba(6, 5, 21, 0.9);
-}
-
-.submenu > div.with-arrow,
-.submenu-2 > div.with-arrow,
-.submenu-3 > div.with-arrow {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .hamburger-menu {
@@ -136,8 +128,13 @@ div.with-arrow.active::before {
     z-index: 45;
   }
 
-  div.submenu.active {
-    display: flex !important;
+  div.submenu.active,
+  div.submenu-2.active,
+  div.submenu-3.active,
+  .portal-submenu.active,
+  .team-submenu.active,
+  .location-submenu.active {
+    display: block !important;
   }
 
   .main-menu p {

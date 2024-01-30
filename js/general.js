@@ -1,24 +1,19 @@
 $(() => {
-  const navMenu = () => {
-    $(".main-menu").hide();
+  $(".main-menu").hide();
 
-    $("div .hamburger-menu").on("click", (event) => {
-      $(".main-menu").toggleClass("active");
-      $(".main-menu").slideToggle();
-    });
+  $(".hamburger-menu").on("click", () => {
+    $(".main-menu").toggleClass("active");
+    $(".main-menu").slideToggle();
+  });
 
-    $(".main-menu").on("click", ".with-arrow[data-submenu]", function (event) {
-      const $clickedWithArrow = $(this);
-      const $submenu = $clickedWithArrow.find(".submenu, .submenu-2, .submenu-3");
+  $(".with-arrow").on("click", function () {
+    $(this).toggleClass("active");
+    $(this).children(".submenu, .submenu-2, .submenu-3").addClass("active");
 
-      // Remove active class from other submenus
-      $(".submenu, .submenu-2, .submenu-3").not($submenu).removeClass("active");
+    // Activate parent with-arrow elements and their ancestors
+    $(this).parents(".with-arrow").addClass("active");
 
-      // Toggle the class to control visibility
-      $clickedWithArrow.toggleClass("active");
-      $submenu.toggleClass("active");
-    });
-  };
-
-  navMenu();
+    // Deactivate nested submenus in other with-arrow elements
+    $(this).siblings(".with-arrow").find(".submenu, .submenu-2, .submenu-3").removeClass("active");
+  });
 });
