@@ -1,32 +1,43 @@
 $(() => {
   const navMenu = () => {
-    $("nav .hamburger-menu").on("click", (event) => {
-      $(event.target).next(".main-menu").slideToggle();
+    // Hide the main menu initially
+    $(".main-menu").hide();
+
+    $("div .hamburger-menu").on("click", (event) => {
+      $(".main-menu").toggleClass("active");
+      $(".main-menu").slideToggle(); // Toggle visibility
     });
 
-    $(".main-menu > p.with-arrow").on({
-      mouseenter: (event) => $(event.target).toggleClass("active"),
-      mouseleave: (event) => $(event.target).toggleClass("active"),
-      click: (event) => {
-        $(event.target).find(".submenu").slideToggle("active");
-        $(event.target).siblings().find(".submenu").hide("active");
-      },
+    $(".main-menu > div.with-arrow").on("click", function (event) {
+      // Toggle the triggered class
+      $(this).toggleClass("triggered");
+
+      // Toggle the display property of the submenu with a slideDown effect
+      const submenu = $(this).find(".submenu, .submenu-2, .submenu-3");
+      if ($(this).hasClass("triggered")) {
+        submenu.slideDown("triggered");
+      } else {
+        submenu.slideUp("triggered");
+      }
+
+      // Hide other submenus
+      $(this).siblings().removeClass("triggered").find(".submenu, .submenu-2, .submenu-3").slideUp("triggered");
     });
 
-    // Hamburger 2nd level
-    $(".submenu > p.with-arrow").on("click", (event) => {
-      $(event.target).find(".submenu-2").slideToggle("active");
-      $(event.target).siblings().find(".submenu-2").hide("active");
-    });
+    $(".submenu > div.with-arrow, .submenu-2 > div.with-arrow").on("click", function (event) {
+      // Toggle the triggered class
+      $(this).toggleClass("triggered");
 
-    // Hamburger 3rd level
-    $(".submenu-2 > p.with-arrow").on("click", (event) => {
-      $(event.target).find(".submenu-3").slideToggle("active");
-      $(event.target).siblings().find(".submenu-3").hide("active");
-    });
+      // Toggle the display property of the submenu-3 with a slideDown effect
+      const submenu3 = $(this).find(".submenu-3");
+      if ($(this).hasClass("triggered")) {
+        submenu3.slideDown("triggered");
+      } else {
+        submenu3.slideUp("triggered");
+      }
 
-    $("nav .hamburger-menu").on("click", () => {
-      $(".nav-container").toggleClass("added-padding");
+      // Hide other submenu-3
+      $(this).siblings().removeClass("triggered").find(".submenu-3").slideUp("triggered");
     });
   };
 
