@@ -16,7 +16,6 @@ header {
   margin: 0;
   padding: var(--spacing-small);
   position: relative;
-  z-index: 100;
 }
 
 .nav-container {
@@ -31,7 +30,6 @@ header {
   background-color: rgba(6, 5, 21, 0.9);
   padding: var(--spacing-small);
   position: absolute;
-  z-index: 1000;
 }
 
 .main-menu > div.with-arrow {
@@ -46,7 +44,6 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1001;
 }
 
 .main-menu > div.with-arrow:hover {
@@ -66,7 +63,6 @@ div.submenu-3 {
   left: 100%;
   text-align: center;
   display: none;
-  z-index: 120;
   max-height: 0;
   min-width: 120px;
   overflow: hidden;
@@ -98,14 +94,12 @@ div a {
 div.with-arrow::before {
   content: "▶";
   margin-left: 5px;
-  z-index: 200;
   padding: 5px;
 }
 
 div.with-arrow.active::before {
   content: "▼";
   margin-left: 5px;
-  z-index: 200;
   padding: 5px;
 }
 
@@ -120,12 +114,10 @@ div.with-arrow.active::before {
     align-items: flex-start;
     width: 100%;
     position: relative;
-    z-index: 30;
   }
 
   .main-menu.active {
     display: flex;
-    z-index: 45;
   }
 
   div.submenu.active,
@@ -150,7 +142,6 @@ div.with-arrow.active::before {
     left: 100%;
     width: 100%;
     padding-left: 20px;
-    z-index: 120;
   }
 
   .main-menu .with-arrow:hover .submenu,
