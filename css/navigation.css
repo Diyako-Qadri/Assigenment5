@@ -32,6 +32,18 @@ nav ul {
   position: absolute;
 }
 
+.main-menu {
+  margin: 0;
+  z-index: 1000;
+}
+.main-menu > li {
+  margin: 0;
+  padding: 4px;
+}
+
+.main-menu > li:hover {
+  background-color: var(--overlay-color);
+}
 .submenu {
   position: absolute;
   left: 100%;
@@ -45,7 +57,6 @@ nav ul {
   top: 0;
   left: 100%;
   background-color: rgba(6, 5, 21, 0.9);
-  padding: var(--spacing-small);
   display: none;
   z-index: 12;
 }
@@ -54,9 +65,14 @@ nav ul {
   position: absolute;
   top: 150px;
   background-color: rgba(6, 5, 21, 0.9);
-  padding: var(--spacing-small);
   display: none;
   z-index: 13;
+}
+
+.submenu > li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hamburger-menu {
