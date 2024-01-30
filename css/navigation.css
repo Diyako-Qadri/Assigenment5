@@ -21,29 +21,30 @@ header {
   z-index: 10;
 }
 
-nav ul {
+nav .main-menu {
   cursor: pointer;
   display: none;
-  list-style-type: none;
   top: 100%;
   left: 0;
   background-color: rgba(6, 5, 21, 0.9);
   padding: var(--spacing-small);
   position: absolute;
-}
-
-.main-menu {
-  margin: 0;
   z-index: 1000;
 }
-.main-menu > li {
+
+.nav-container {
+  margin: 0;
+}
+
+.main-menu > p.with-arrow {
   margin: 0;
   padding: 4px;
 }
 
-.main-menu > li:hover {
+.main-menu > p.with-arrow:hover {
   background-color: var(--overlay-color);
 }
+
 .submenu {
   position: absolute;
   left: 100%;
@@ -69,7 +70,9 @@ nav ul {
   z-index: 13;
 }
 
-.submenu > li {
+.submenu > p.with-arrow,
+.submenu-2 > p.with-arrow,
+.submenu-3 > p.with-arrow {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -96,63 +99,21 @@ nav a {
   font-family: "K2D-Regular";
 }
 
-nav ul li:hover {
-  background-color: var(--overlay-color);
-}
-
-a:link {
-  text-decoration: none;
-}
-
-a:hover {
-  background-color: transparent;
-  text-decoration: underline;
-}
-
-/* Display arrow only for items with the "with-arrow" class */
-nav ul > li.with-arrow::before {
+nav .main-menu > p.with-arrow::before {
   content: "▶";
   margin-left: 5px;
   z-index: 12;
 }
 
-/* Remove arrow for items without children */
-nav ul > li:not(.with-arrow) {
-  position: relative;
-}
-
-/* Remove arrow for last children */
-nav ul > li:not(.with-arrow) > ul li:last-child::before {
-  content: none;
-}
 .submenu,
 .submenu-2,
 .submenu-3 {
   padding: var(--spacing-small) 0;
 }
 
-.submenu li:hover,
-.submenu-2 li:hover,
-.submenu-3 li:hover {
-  background-color: var(--overlay-color);
-}
-
-nav ul > li::before,
-.submenu li::before,
-.submenu-2 li::before,
-.submenu-3 li::before {
-  white-space: nowrap;
-}
-
-.submenu,
-.submenu-2,
-.submenu-3 {
-  padding: var(--spacing-small) 0;
-}
-
-.submenu li,
-.submenu-2 li,
-.submenu-3 li {
+.submenu p,
+.submenu-2 p,
+.submenu-3 p {
   padding: var(--spacing-small);
   max-width: 160px;
   min-width: 140px;
@@ -174,7 +135,7 @@ nav ul > li::before,
     display: none;
   }
 
-  nav > ul {
+  nav .main-menu {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -182,14 +143,10 @@ nav ul > li::before,
     position: relative;
   }
 
-  nav > ul > li {
+  nav .main-menu > p.with-arrow {
     cursor: pointer;
     padding: var(--spacing-small) var(--spacing-main);
     position: relative;
-  }
-
-  .submenu li {
-    padding-left: none;
   }
 
   .submenu {
@@ -200,23 +157,17 @@ nav ul > li::before,
     padding: var(--spacing-small);
   }
 
-  .submenu li::before,
-  .submenu-2 li::before,
-  .submenu-3 li::before {
-    white-space: nowrap;
-  }
-
-  .submenu li,
-  .submenu-2 li,
-  .submenu-3 li {
+  .submenu p,
+  .submenu-2 p,
+  .submenu-3 p {
     padding: var(--spacing-small) var(--spacing-main);
   }
 
   /* Remove arrow for items without children */
-  nav ul > li:not(.with-arrow):only-child::before,
-  .submenu li:not(.with-arrow):only-child::before,
-  .submenu-2 li:not(.with-arrow):only-child::before,
-  .submenu-3 li:not(.with-arrow):only-child::before {
+  nav .main-menu > p:not(.with-arrow):only-child::before,
+  .submenu p:not(.with-arrow):only-child::before,
+  .submenu-2 p:not(.with-arrow):only-child::before,
+  .submenu-3 p:not(.with-arrow):only-child::before {
     content: none;
   }
 }

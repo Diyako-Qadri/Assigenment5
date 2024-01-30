@@ -1,40 +1,32 @@
 $(() => {
-  // GENERAL TO ALL PAGES
-  //Hamburger menu 1st level/wokrks
-
   const navMenu = () => {
-    $('nav .hamburger-menu').on('click', event =>
-      $(event.target).next('ul').toggle()
-    );
-    $('ul li').on({
-      mouseenter: event => $(event.target).toggleClass('active'),
-      mouseleave: event => $(event.target).toggleClass('active'),
-      click: event => {
-        $(event.target).find('.submenu').toggle('active');
-        $(event.target).siblings().find('.submenu').hide('active');
-      },
+    $("nav .hamburger-menu").on("click", (event) => {
+      $(event.target).next(".main-menu").slideToggle();
     });
-    //hamburger 2nd level-works
-    $('.submenu li').on('click', event => $(event.target).next('ul').toggle());
-    $('.submenu li').on({
-      click: event => {
-        $(event.target).find('.submenu-2').toggle('active');
-        $(event.target).siblings().find('.submenu-2').hide('active');
-      },
-    });
-    //hamburger menu 3 level-works
-    $('.submenu-2 li').on('click', event =>
-      $(event.target).next('ul').toggle()
-    );
-    $('.submenu-2 li').on({
-      click: event => {
-        $(event.target).find('.submenu-3').toggle('active');
-        $(event.target).siblings().find('.submenu-3').hide('active');
+
+    $(".main-menu > p.with-arrow").on({
+      mouseenter: (event) => $(event.target).toggleClass("active"),
+      mouseleave: (event) => $(event.target).toggleClass("active"),
+      click: (event) => {
+        $(event.target).find(".submenu").slideToggle("active");
+        $(event.target).siblings().find(".submenu").hide("active");
       },
     });
 
-    $('nav .hamburger-menu').on('click', () => {
-      $('.nav-container').toggleClass('added-padding');
+    // Hamburger 2nd level
+    $(".submenu > p.with-arrow").on("click", (event) => {
+      $(event.target).find(".submenu-2").slideToggle("active");
+      $(event.target).siblings().find(".submenu-2").hide("active");
+    });
+
+    // Hamburger 3rd level
+    $(".submenu-2 > p.with-arrow").on("click", (event) => {
+      $(event.target).find(".submenu-3").slideToggle("active");
+      $(event.target).siblings().find(".submenu-3").hide("active");
+    });
+
+    $("nav .hamburger-menu").on("click", () => {
+      $(".nav-container").toggleClass("added-padding");
     });
   };
 
