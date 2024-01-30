@@ -16,7 +16,7 @@ header {
   margin: 0;
   padding: var(--spacing-small);
   position: relative;
-  z-index: 10;
+  z-index: 100;
 }
 
 .nav-container {
@@ -31,30 +31,45 @@ header {
   background-color: rgba(6, 5, 21, 0.9);
   padding: var(--spacing-small);
   position: absolute;
-  z-index: 1000;
+  z-index: 10;
 }
 
 .main-menu > div.with-arrow {
   margin: 0;
   padding: 4px;
-  position: relative; /* Added relative positioning */
+  position: relative;
 }
 
 .main-menu > div.with-arrow:hover {
   background-color: var(--overlay-color);
 }
 
-.submenu,
-.submenu-2,
-.submenu-3 {
-  position: absolute;
-  top: 100%;
-  left: 0;
+.with-arrow.active .submenu-2,
+.with-arrow.active .submenu-2.active {
+  display: flex;
+}
+
+.portal-submenu.active,
+.team-submenu.active,
+.location-submenu.active {
+  display: flex;
+}
+
+div.submenu,
+div.submenu-2,
+div.submenu-3 {
+  position: relative;
+  top: 0;
+  left: 100%;
+  text-align: center;
   display: none;
-  z-index: 11;
-  max-height: 0; /* Added max-height */
+  z-index: 110;
+  max-height: 0;
+  min-width: 120px;
   overflow: hidden;
-  transition: max-height 0.3s ease; /* Added transition for smooth height change */
+  transition: max-height 0.3s ease;
+  padding: var(--spacing-small);
+  background-color: rgba(6, 5, 21, 0.9);
 }
 
 .submenu > div.with-arrow,
@@ -76,7 +91,6 @@ header {
   width: 55px;
 }
 
-/* ----- Navlink ----*/
 div {
   font-family: "K2D-Regular";
 }
@@ -86,21 +100,24 @@ div a {
   font-family: "K2D-Regular";
 }
 
-div .main-menu > div.with-arrow::before {
+div.with-arrow::before {
   content: "▶";
   margin-left: 5px;
-  z-index: 12;
+  z-index: 200;
+  padding: 5px;
 }
 
-.submenu div,
-.submenu-2 div,
-.submenu-3 div {
-  padding: var(--spacing-small);
-  max-width: 160px;
-  min-width: 140px;
+div.with-arrow.active::before {
+  content: "▼"; /* Changed from "▶" to "▼" for active state */
+  margin-left: 5px;
+  z-index: 200;
+  padding: 5px;
 }
 
-/* Media Query adjustments */
+.main-menu.active {
+  display: flex;
+}
+
 @media screen and (max-width: 990px) {
   .main-menu {
     display: none;
@@ -122,7 +139,9 @@ div .main-menu > div.with-arrow::before {
   .main-menu .submenu,
   .main-menu .submenu-2,
   .main-menu .submenu-3 {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 100%;
     width: 100%;
     padding-left: 20px;
   }
@@ -130,7 +149,7 @@ div .main-menu > div.with-arrow::before {
   .main-menu .with-arrow:hover .submenu,
   .main-menu .with-arrow:hover .submenu-2,
   .main-menu .with-arrow:hover .submenu-3 {
-    max-height: 200px; /* Set an appropriate max-height value */
+    max-height: 200px;
   }
 
   .hamburger-menu {

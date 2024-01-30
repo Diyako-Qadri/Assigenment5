@@ -1,43 +1,25 @@
 $(() => {
   const navMenu = () => {
-    // Hide the main menu initially
     $(".main-menu").hide();
 
     $("div .hamburger-menu").on("click", (event) => {
       $(".main-menu").toggleClass("active");
-      $(".main-menu").slideToggle(); // Toggle visibility
+      $(".main-menu").slideToggle();
     });
 
-    $(".main-menu > div.with-arrow").on("click", function (event) {
-      // Toggle the triggered class
-      $(this).toggleClass("triggered");
+    $(".main-menu").on("click", ".with-arrow[data-submenu]", function (event) {
+      const $clickedWithArrow = $(this);
+      $clickedWithArrow.toggleClass("active");
+      const $submenu = $clickedWithArrow.find(".submenu, .submenu-2, .submenu-3");
+      $submenu.slideToggle();
 
-      // Toggle the display property of the submenu with a slideDown effect
-      const submenu = $(this).find(".submenu, .submenu-2, .submenu-3");
-      if ($(this).hasClass("triggered")) {
-        submenu.slideDown("triggered");
-      } else {
-        submenu.slideUp("triggered");
+      // Close other submenus
+      $(".with-arrow[data-submenu]").not($clickedWithArrow).removeClass("active").find(".submenu, .submenu-2, .submenu-3").slideUp();
+
+      // If it's a submenu-2, ensure that the submenu-2 is visible
+      if ($clickedWithArrow.hasClass("submenu-2")) {
+        $clickedWithArrow.closest(".submenu-2").slideDown();
       }
-
-      // Hide other submenus
-      $(this).siblings().removeClass("triggered").find(".submenu, .submenu-2, .submenu-3").slideUp("triggered");
-    });
-
-    $(".submenu > div.with-arrow, .submenu-2 > div.with-arrow").on("click", function (event) {
-      // Toggle the triggered class
-      $(this).toggleClass("triggered");
-
-      // Toggle the display property of the submenu-3 with a slideDown effect
-      const submenu3 = $(this).find(".submenu-3");
-      if ($(this).hasClass("triggered")) {
-        submenu3.slideDown("triggered");
-      } else {
-        submenu3.slideUp("triggered");
-      }
-
-      // Hide other submenu-3
-      $(this).siblings().removeClass("triggered").find(".submenu-3").slideUp("triggered");
     });
   };
 
