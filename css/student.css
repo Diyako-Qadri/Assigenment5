@@ -8,8 +8,7 @@
 
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  
 }
 
 html {
@@ -24,12 +23,6 @@ body {
   min-height: 100%;
   margin: 0;
 }
-header {
-    padding: 12px;
-    color: var(--primary-text-color);
-    border-bottom: 1px solid #fff;
-  }
-
  
 .select {
     background: #141619;
