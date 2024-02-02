@@ -147,6 +147,18 @@ $(() => {
           showStudentInfo(arrayStudentObject);
         });
 
+        $(document).on("click keydown", (event) => {
+          if (event.type === "click" || (event.type === "keydown" && event.key === "Escape")) {
+            const isModalClick = $(event.target).closest(".modal, #modal");
+
+            if (isModalClick.length === 0 || (event.type === "keydown" && event.key === "Escape")) {
+              modalContent.removeClass("active");
+              $("#overlay").removeClass("active");
+              showStudentInfo(arrayStudentObject);
+            }
+          }
+        });
+
         studentContent.empty().append(modalContent);
         modalContent.addClass("active");
         $("#overlay").addClass("active");
